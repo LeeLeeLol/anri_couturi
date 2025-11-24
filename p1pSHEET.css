@@ -1,0 +1,1673 @@
+@font-face {
+    font-family: 'Futura Lt BT Fein';
+    src: url('/futura-font/futura\ light\ bt.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Futura Book font';
+    src: url('/futura-font/Futura\ Book\ font.ttf');
+}
+
+@font-face {
+    font-family: 'Poppins Light';
+    src: url('/Poppins-Font/Poppins-Light.ttf')
+}
+
+@font-face {
+    font-family: 'Poppins Bold';
+    src: url('/Poppins-Font/Poppins-Bold.ttf')
+}
+
+@font-face {
+    font-family: 'Poppins Regular';
+    src: url('Poppins-Font/Poppins-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Poppins Semi Bold';
+    src: url('Poppins-Font/Poppins-SemiBold.ttf');
+}
+
+@font-face {
+    font-family: 'Poppins Medium';
+    src: url('Poppins-Font/Poppins-Medium.ttf');
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    color: transparent;
+    background-color: transparent;
+    position: fixed;
+    width: calc(100% - 40px);
+    z-index: 10;
+    top: 44px; /* Startposition außerhalb des sichtbaren Bereichs */
+    height: 230px;
+    fill: transparent;
+    transition: background-color 0.6s, color 0.2s, fill 0.6s, top 0.6s, height 0.6s ease; /* Transition hinzufügen */
+}
+
+#header.scrolled {
+    background-color: white;
+    color: black;
+    top: 0; /* Endposition im sichtbaren Bereich */
+    transition: background-color 0.6s, color 0.2s, fill 0.6s, top 0.6s height 0.6s ease; /* Transition hinzufügen */
+    border-bottom: transparent;
+    border-bottom: 1px solid #e1e1e1;
+    height: 55px;
+}
+
+#header.scrolled .logo {
+    transform: translate(-50%, 0px); /* Anpassung des Abstands bei Scroll */
+    transition: transform 0.6s; /* Transition für transform hinzufügen */
+}
+
+#header.scrolled .logo svg {
+    height: 50px; /* Neue Höhe bei Scroll */
+    width: 210px; /* Neue Breite bei Scroll */
+}
+
+#header.scrolled .logo-path {
+    transform: scale(1); /* Skalierung bei Scroll */
+    transition: transform 0.6s, fill 0.1s ease; /* Transition für transform und fill hinzufügen */
+    fill: black;
+    transition: fill 0.6s;
+}
+
+.nav-header {
+    margin: 0px 12px;
+    padding-top: 1px;
+    padding-right: 10px;
+    padding-bottom: 1px;
+    padding-left: 10px;
+    height: 20px;
+}
+
+/* Container for left and right nav groups */
+.nav-group {
+    display: flex;
+    align-items: center;
+    padding-left: 2.5vw;
+    padding-right: 2.5vw;
+}
+
+/* Nav link styles */
+.nav-left, .nav-right {
+    font-family: 'Poppins Semi Bold';
+    font-size: 12.5px;
+    color: inherit;
+    border-color: inherit;
+    outline-style: none;
+    background-color: transparent;
+    margin-top: 11px;
+    margin-bottom: 10px;
+    border-top: none;
+    border-bottom: none;
+    font-weight: bold;
+    text-decoration: none; /* Entfernt Unterstreichungen */
+    align-content: center;
+    outline-color: inherit;
+}
+
+.nav-left, .nav-right a {
+    line-height: 0;
+}
+
+.logo {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0px); /* Verschiebt das Logo sowohl horizontal als auch vertikal */
+    transition: transform 0.6s, margin-top 0.6s ease; /* Transition für transform hinzufügen */
+    height: auto;
+    width: auto;
+}
+
+.logo svg {
+    display: block;
+    height: 200px; /* Höhe des SVG-Containers auf die ViewBox-Höhe einstellen */
+    width: 1000px; /* Breite des SVG-Containers auf die ViewBox-Breite einstellen */
+    transition: height 0.6s ease, width 0.6s ease; /* Übergang für die Größe */
+}
+
+.logo-path {
+    fill: white;
+    transform: scale(1); /* Standard-Skalierung */
+    transform-origin: center; /* Skalierung erfolgt vom Zentrum aus */
+    transition: transform 0.6s, fill 0.6s ease; /* Füge eine Transition hinzu */
+}
+
+
+.header-icons {
+    display: flex;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    align-items: center; /* Zentriert die Icons vertikal */
+    justify-content: center; /* Zentriert die Icons horizontal */
+    margin: 0px 6px; /* Gleichmäßiger Abstand */
+    visibility: visible;
+}
+
+.menu-link {
+    font-family: 'Poppins Semi Bold';
+    font-size: 12.5px;
+    display: flex; /* Flexbox innerhalb des Links */
+    align-items: center; /* Vertikale Ausrichtung von Icon und Text */
+    gap: 8px; /* Abstand zwischen SVG und Text */
+    text-decoration: none; /* Entfernt den Unterstrich */
+    color: inherit; /* Übernimmt die Textfarbe der Umgebung */
+    line-height: 0;
+}
+
+.header-icons a {
+    line-height: 0;
+    color: inherit;
+    fill: none;
+}
+
+.icon-header-menu {
+    margin-bottom: 1px;
+    fill: inherit;
+    height: 25px;
+    width: 18px;
+    display: inline-block;
+    vertical-align: middle; /* Sicherstellen, dass das Icon richtig ausgerichtet ist */
+}
+
+/* Standardmäßig Links unsichtbar machen */
+.nav-right.nav-header, .nav-left.nav-header {
+    visibility: hidden; /* Links bleiben im Layout, aber sind unsichtbar */
+    pointer-events: none; /* Sicherstellen, dass sie nicht anklickbar sind */
+    transition: visibility 0.2s ease;
+}
+
+/* Links sichtbar machen, wenn der Header die Klasse "scrolled" hat */
+.nav-right.nav-header.scrolled, .nav-left.nav-header.scrolled {
+    visibility: visible; /* Links werden sichtbar */
+    pointer-events: auto; /* Sicherstellen, dass sie anklickbar sind */
+    transition: visibility 0.2s ease;
+}
+
+/* Standardmäßig Icons unsichtbar machen */
+.header-icons {
+    visibility: hidden; /* Icons sind unsichtbar */
+    pointer-events: none; /* Sicherstellen, dass sie nicht anklickbar sind */
+    transition: visibility 0.2s ease;
+}
+
+/* Icons sichtbar machen, wenn der Header die Klasse "scrolled" hat */
+#header.scrolled .header-icons {
+    visibility: visible; /* Icons wieder sichtbar machen */
+    pointer-events: auto; /* Sicherstellen, dass sie anklickbar sind */
+    transition: visibility 0.2s ease;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Side Menu Styling */
+.side-menu {
+    height: 100%;
+    width: 22vw; /* Feste Breite des Menüs */
+    min-width: 400px; /* Mindestbreite des Menüs */
+    max-width: 400px; /* Optional: Maximale Breite für sehr große Bildschirme */
+    position: fixed;
+    z-index: 30;
+    top: 0;
+    left: -25vw; /* Initiale Position außerhalb des sichtbaren Bereichs */
+    background-color: #ffffff;
+    overflow-y: auto; /* Scrollbar bei zu viel Inhalt */
+    overflow-x: hidden;
+    transition: left 0.5s, visibility 0.6s ease; /* Nur left animieren */
+    padding-top: 8vh;
+    box-sizing: border-box; /* Box Model anpassen, damit Padding die Breite nicht beeinflusst */
+    border-right: 2px solid #e1e1e1;
+    visibility: hidden;
+}
+
+.side-menu.open {
+    left: 0; /* Position des geöffneten Menüs */
+    visibility: visible;
+}
+
+/* Styling für Menüeinträge */
+.side-menu .menu-item {
+    font-family: 'Poppins Semi Bold';
+    padding: 0.05vh 0.2vw;
+    margin-bottom: 3.2vh;
+    margin-left: 2vw;
+    text-decoration: none;
+    font-size: 16px;
+    color: #000000;
+    display: flex; /* Flexbox für einfaches Layout mit dem Pfeil */
+    align-items: center;
+    position: relative;
+    transition: color 0.3s ease, transform 0.3s ease; /* Schrift und Position animieren */
+    cursor: pointer;
+    width: max-content;
+}
+
+/* Pfeil als Pseudoelement */
+.side-menu .menu-item::after {
+    content: "→"; /* Unicode für Pfeil */
+    font-size: 16px;
+    color: #000; /* Pfeilfarbe */
+    margin-left: 0.5em; /* Abstand zur Schrift */
+    opacity: 0; /* Unsichtbar standardmäßig */
+    transform: translateX(-10px); /* Pfeil ist leicht links verschoben */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth Transition */
+}
+
+/* Hover-Effekt: Pfeil rein und Text leicht verschieben */
+.side-menu .menu-item:hover {
+    transform: translateX(-5px); /* Text leicht nach links */
+}
+
+.side-menu .menu-item:hover::after {
+    opacity: 1; /* Sichtbar */
+    transform: translateX(0); /* Pfeil in Position bringen */
+}
+
+/* Close Button Styling */
+.side-menu .closebtn {
+    position: absolute;
+    top: 15px;
+    right: 2.5vw;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    transition: transform 0.6s ease-in-out; /* Smooth Transition */
+    transform-origin: center; /* Skalierung aus der Mitte */
+    will-change: transform; /* Optimiert die Skalierungs-Performance */
+}
+
+.side-menu .closebtn:hover {
+    transform: scale(1.1); /* Vergrößerung */
+}
+
+/* Submenu Styling */
+.submenu {
+    height: 100%;
+    width: 22vw; /* Feste Breite des Submenus, gleiche Breite wie das Hauptmenü */
+    min-width: 400px; /* Mindestbreite des Submenus */
+    max-width: 400px; /* Optional: Maximale Breite für sehr große Bildschirme */
+    position: fixed;
+    z-index: 25;
+    top: 0;
+    left: 22vw;
+    background-color: #ffffff;
+    overflow-y: auto; /* Scrollbar bei zu viel Inhalt */
+    overflow-x: hidden;
+    transition: left 0.5s; /* Nur left animieren */
+    padding-top: 8vh;
+    box-sizing: border-box; /* Box Model anpassen, damit Padding die Breite nicht beeinflusst */
+    display: none; /* Standardmäßig nicht angezeigt */
+    text-align: left; /* Text bleibt linksbündig */
+    white-space: nowrap; /* Verhindert Zeilenumbrüche */
+}
+
+.submenu.open {
+    display: block; /* Anzeige bei geöffnetem Zustand */
+}
+
+.submenu .submenu-item {
+    font-family: 'Poppins Semi Bold';
+    padding: 0.05vh 0.2vw;
+    margin-bottom: 3.2vh;
+    margin-left: 2vw; /* Abstand vom linken Rand des Submenus */
+    text-decoration: none;
+    font-size: 14px;
+    color: #000000;
+    display: block; /* Jeder Link wird untereinander angezeigt */
+    text-align: left; /* Text bleibt linksbündig */
+    white-space: nowrap; /* Verhindert Zeilenumbrüche */
+    transition: color 0.3s ease; /* Farbänderung animieren */
+    cursor: pointer;
+    width: max-content; /* Klickfläche passt sich der Breite des Textes an */
+    position: relative;
+}
+
+/* Grundlegendes Overlay Styling */
+.overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0); /* Anfangs keine Verdunklung */
+    opacity: 0; /* Anfangs nicht sichtbar */
+    pointer-events: none;
+    transition: opacity 0.8s cubic-bezier(0.5, 0, 0, 1), background-color 0.8s cubic-bezier(0.5, 0, 0, 1); /* Smooth Übergang */
+    z-index: 20;
+}
+
+.overlay.active {
+    opacity: 1; /* Voll sichtbar */
+    pointer-events: all;
+    background-color: rgba(0, 0, 0, 0.5); /* Leichter Verdunklungseffekt */
+}
+
+/* Media Queries für kleinere Fenster */
+@media (max-width: 800px) {
+    .side-menu, .submenu {
+        width: 100%; /* Menü nimmt gesamten Platz ein */
+        left: -100%; /* Initial außerhalb des sichtbaren Bereichs */
+    }
+
+    .side-menu.open, .submenu.open {
+        left: 0; /* Öffnen nimmt ganzen Platz ein */
+    }
+
+    .submenu {
+        left: 100%; /* Submenu direkt nach dem Hauptmenü */
+    }
+}
+
+/* Body fixieren, wenn das Side Menu geöffnet ist */
+body.no-scroll {
+    overflow: hidden; /* Verhindert das Scrollen */
+    position: relative;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Container für den Banner mit Schneeflocken */
+.top-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000000;
+    color: white;
+    text-align: center;
+    padding: 0 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: transform 0.6s ease;
+    overflow: hidden; /* Verhindert, dass die Schneeflocken außerhalb des Containers sichtbar sind */
+}
+
+.top-banner a {
+    text-decoration: none;
+    font-family: 'Poppins Regular';
+    font-size: 13px;
+    color: white;
+    padding: 0;
+    margin: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(255, 255, 255);
+    background-color: white;
+    margin: 0;
+    padding: 0;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#banner-container {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Höhe auf die volle Ansichtshöhe setzen */
+    overflow: hidden; /* Verhindert, dass das Video über den Container hinausläuft */
+    background: white;
+    text-align: left;
+    color: white;
+    border-bottom: 4px solid #e1e1e1;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.responsive-banner, #promo-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Schneidet das Video zu und füllt den Container */
+    display: block;
+    z-index: 0;
+    transform: translateZ(0);
+    backface-visibility: hidden; 
+    border: none;
+    margin: 0;
+    padding: 0;
+    position: absolute; /* Absolute Positionierung, um den Container vollständig auszufüllen */
+    top: 0;
+    left: 0;
+}
+
+#promo-video::after {
+    content: '';
+    display: block;
+    height: 1px;
+    background-color: transparent;
+}
+
+.banner-link {
+    position: absolute;
+    top: 0vh;
+    left: 0; 
+    width: 100%;
+    height: 100%;
+    z-index: 1; }
+
+#header--responsive--banner {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    text-align: center;
+    color: white;
+    width: auto; /* Stellt sicher, dass der Header die volle Breite hat */
+    box-sizing: border-box;
+    font-size: 1.6vh;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 650;
+    margin-bottom: 1.25vh;
+    text-transform: uppercase;
+    margin: 0;
+    margin-bottom: 0.9vh;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.centered {
+    position: absolute;
+    top: 215px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto; /* Passt die Breite an den Inhalt an */
+    height: auto; /* Passt die Höhe an den Inhalt an */
+    z-index: 10;
+}
+
+.ac--vid--text--new {
+    transform: scale(0.7); /* Skaliert das SVG auf 50% der Originalgröße */
+    transform-origin: center; /* Skalierung erfolgt vom Zentrum aus */
+    display: block; /* Stellt sicher, dass die Box sich anpasst */
+    backface-visibility: hidden;
+}
+
+.ac--vid--text--new--path {
+    fill: white;
+    transition: fill 0.6s ease; /* Transition für die Füllfarbe hinzufügen */
+}
+
+/* Bottom left text */
+#bottom-left {
+    text-align: center;
+    width: auto;
+    padding: 15px;
+    position: absolute;
+    bottom: 4vh;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2; /* Stellt sicher, dass der Text über dem Schatten liegt */
+}
+
+.__season--span-- {
+    text-align: center;
+    font-family: 'Poppins Regular';
+    font-weight: bold;
+    font-size: 20px;
+    font-weight: 550;
+    margin: -10px 0px;
+    display: block;
+}
+
+.line-break--top_10px {
+    margin-bottom: 5px; /* Abstand unterhalb des Zeilenumbruchs */
+}
+
+.__col--span-- {
+    text-align: center;
+    font-family: 'Poppins Regular';
+    font-weight: bold;
+    font-size: 30px;
+    color: white;
+    padding-top: 1px;
+    padding-bottom: 3px;
+    display: block;
+}
+
+.pause-button {
+    position: absolute;
+    bottom: 30px; /* Abstand vom unteren Rand */
+    right: 20px; /* Abstand vom rechten Rand */
+    background-color: transparent;
+    color: white; /* Textfarbe */
+    border: none; /* Kein Rahmen */
+    padding: 5px; /* Innenabstand */
+    cursor: pointer; /* Zeiger ändern */
+    font-size: 16px; /* Schriftgröße */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+#pause-icon, #play-icon {
+    width: 24px;
+    height: 24px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.__shop-now--span-- {
+    width: auto;
+    position: relative;
+    display: inline-block;
+    font-family: 'Poppins Semi Bold';
+    font-size: 14px;
+    text-transform: uppercase;
+    color: white;
+    border: none;
+    background: transparent;
+    padding: 10px 20px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: color 0.2s ease-in-out;
+    z-index: 10;
+    margin: 0vh 0.75vw;
+
+    background-color: hsla(0, 0%, 0%, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* Webkit-Präfix */
+}
+
+.__shop-now--span--::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    z-index: -1;
+    transition: top 0.2s ease-in-out;
+}
+
+.__shop-now--span--:hover::before {
+    top: 0;
+}
+
+.__shop-now--span--:hover {
+    color: rgb(0, 0, 0);
+    transition: color 0.2s ease-in-out;
+}
+
+#bottom-left--button-container {
+    position: absolute;
+    bottom: 2.5vh;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*SECTIONS*/
+
+
+
+
+#white-section {
+    width: 100%;
+    height: 2.5vh; /* Höhe des sichtbaren Bereichs */
+    background-color: white; /* Hintergrundfarbe weiß */
+    z-index: 10;
+    align-content: center;
+}
+
+.white-section--3 {
+    align-content: center;
+    justify-content: center;
+    width: 100%;
+    height: 140vh; /* Höhe des sichtbaren Bereichs */
+    background-color: #ffffff; /* Hintergrundfarbe weiß */
+    z-index: 10;
+}
+
+.header-first-ws {
+    margin-top: 6vh;
+    font-size: 28px;
+    font-family: 'Futura Lt BT Fein';
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-weight: 1000;
+}
+
+
+
+
+
+
+
+
+.white-section--2 {
+    align-content: center;
+    justify-content: center;
+    width: 100%;
+    height: 75vh; /* Höhe des sichtbaren Bereichs */
+    background-color: black; /* Hintergrundfarbe weiß */
+    z-index: 10;
+}
+
+.header--second--white--section--2 {
+    margin-bottom: 5vh;
+    font-size: 22px;
+    font-family: 'Poppins Medium';
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-weight: 550;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#banner--container--2 {
+    position: relative;
+    width: 89vw;
+    height: 60vh; /* Höhe auf die volle Ansichtshöhe setzen */
+    overflow: hidden; /* Verhindert, dass das Video über den Container hinausläuft */
+    background-color: transparent;
+    text-align: left;
+    color: white;
+    
+    
+    /* Positions all / VIDEO / centered */
+    left: 50%;
+    transform: translateX(-50%);
+
+}
+
+#recent--news--video2 {
+    width: 89vw;
+    height: 60vh;
+    object-fit: cover; /* Schneidet das Video zu und füllt den Container */
+    display: block;
+    z-index: 0;
+    transform: translateZ(0);
+    backface-visibility: hidden; 
+    border: none;
+    margin: 0;
+    padding: 0;
+    position: absolute; /* Absolute Positionierung, um den Container vollständig auszufüllen */
+    top: 0;
+    left: 0;
+}
+
+
+
+
+
+
+
+#recent--video--center--container {
+    display: flex;
+    list-style: none;
+    position: absolute;
+    bottom: 3.5vh;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+
+.recent--video--center--title {
+    text-align: center;
+    font-family: 'Poppins Light';
+    font-size: 3vh;
+}
+
+
+
+.recent--video--center--text {
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-family: 'Poppins Light';
+    position: relative; /* Stelle sicher, dass der Text positioniert ist */
+    z-index: 1; /* Stelle sicher, dass der Text einen niedrigeren z-index hat */
+}
+
+
+.recent--video--svg--title--centered {
+    position: absolute; /* Ändere zu 'absolute' */
+    top: -10vh; /* Positioniere das SVG oben im Container */
+    left: 50%;
+    transform: translateX(-50%);
+    transition: transform 0.6s, margin-top 0.6s;
+    height: auto;
+    width: auto;
+    z-index: 3; /* Erhöhe den z-index, damit das SVG über dem Text liegt */
+}
+
+
+.recent--video--svg--title--centered svg {
+    display: block;
+    height: 6.5vh; /* Höhe des SVG-Containers auf die ViewBox-Höhe einstellen */
+    width: auto; /* Breite des SVG-Containers auf die ViewBox-Breite einstellen */
+    transition: height 0.6s ease, width 0.6s ease; /* Übergang für die Größe */
+}
+
+.blur-background--recent--video {
+    position: relative;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* Webkit-Präfix */
+    padding: 1vh 1vw; /* Padding für den Innenabstand */
+    border: 1px solid white; /* Rand für visuelle Abgrenzung */
+    border-radius: 2px;
+    display: inline-block;
+}
+
+
+
+.first-span {
+    font-size: 1.6vh;
+    margin-top: -0.5vh;
+    display: block; /* Macht das Span zu einem Blockelement */
+    padding-bottom: 1vh;
+}
+
+.second-span {
+    display: block; /* Macht das Span zu einem Blockelement */
+    font-size: 1.4vh;
+    margin-top: -0.5vh;
+    margin-bottom: -0.5vh;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Product IMG Section 1 */
+.product--2--section-aw {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 110vh;
+    background-color: rgb(0, 0, 0);
+    position: relative;
+}
+
+.p2--image-list-container {
+    position: relative;
+    width: 80%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.mySlides {
+    display: none;
+    position: relative;
+    width: 100%;
+    height: 95vh;
+    opacity: 0.8;
+    transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+}
+
+.mySlides.active {
+    display: block;
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+}
+
+.p2--img-hover-zoom {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.p2--image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.shadow-overlay--2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    transition: opacity 0.7s;
+}
+
+#bottom-centered--products {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.product--image--description {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.w3-button {
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* Webkit-Präfix */
+    color: white;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+    user-select: none;
+    border-radius: 20px;
+    align-content: center;
+    text-align: center;
+}
+
+.w3-b-d--svg {
+    width: 10px;
+    height: 10px;
+}
+
+.w3-display-left {
+    left: 10px;
+}
+
+.w3-display-right {
+    right: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Product IMG Section 1*/
+
+
+
+.product--1--section-aw {
+    align-content: center;
+    justify-content: center;
+    width: 100%;
+    height: 400vh; /* Höhe des sichtbaren Bereichs */
+    background-color: white; /* Hintergrundfarbe weiß */
+    z-index: 10;
+}
+
+.image-list-container {
+    display: flex;
+    justify-content: center; /* Zentriert die Liste horizontal */
+    margin-top: 19.2px;
+    top: 0;
+    bottom: 0;
+}
+
+.image-list {
+    display: flex;
+    gap: 19.2px; /* Abstand zwischen den Listenelementen */
+    padding: 0;
+    margin: 0;
+    list-style: none; /* Entfernt die Standard-Aufzählungszeichen */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* IMAGE RELATED */
+
+
+.image-link {
+    display: inline-block; /* Macht den Link nur so breit wie das Bild */
+    position: relative;
+    overflow: hidden; /* Überschüssige Inhalte ausschneiden */
+    width: 100%; /* Breite des Containers */
+    height: 100%; /* Höhe des Containers */
+}
+
+.img-hover-zoom {
+    position: relative;
+    overflow: hidden; /* Stellt sicher, dass das Bild im Container bleibt */
+    width: auto;
+    height: 80vh;
+}
+
+.image {
+    width: 29vw; /* Passt sich der Breite des Containers an */
+    height: 80vh; /* Passt sich der Höhe des Containers an */
+    object-fit: cover; /* Bild bleibt innerhalb des Containers */
+    transition: transform 1s ease;
+    transform-origin: center;
+}
+
+.image-link:hover .bottom-right--product-images {
+    transform: translateX(0);
+    opacity: 1;
+    transition: transform 0.45s;
+}
+
+.bottom-right--product-images {
+    position: absolute;
+    bottom: calc(0.7vw + 2px);
+    right: 2vw;
+    transform: translateX(10vw);
+    opacity: 0;
+    transition: transform 1s, opacity 0.8s; /* Übergangseffekte hinzufügen */
+    z-index: 2; /* Stellt sicher, dass der Text über dem Schatten liegt */
+}
+
+.image-shadow {
+    position: relative;
+    overflow: hidden; /* Stellt sicher, dass der Schatten nur innerhalb der Grenzen des Bildes bleibt */
+}
+
+.shadow-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15));
+    pointer-events: none;
+    z-index: 1;
+    transition: opacity 0.8s;
+}
+
+.image-link:hover .shadow-overlay {
+    opacity: 0.6;
+}
+
+.product--image--description {
+    font-family: 'Poppins Regular';
+    font-weight: bold;
+    font-size: 30px;
+    color: white;
+    letter-spacing: 0.01vw;
+}
+
+.product--image--description--br-- {
+    margin-bottom: 1.2vh;
+}
+
+.product--image--description--2nd-- {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 14px;
+    color: white;
+    border-left: 1px solid white;
+    padding: 0.2vh 0.5vw;
+}
+
+.product--image--description--3rd-- {
+    font-family: sans-serif;
+    font-size: 12px;
+    color: white;
+}
+
+#centered {
+    position: absolute;
+    bottom: 3.5vh;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 1.5s ease;
+}
+
+.blur-background {
+    position: relative;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* Webkit-Präfix */
+    padding: 7px; /* Padding für den Innenabstand */
+    border: 1px solid white; /* Rand für visuelle Abgrenzung */
+    border-radius: 2px;
+    display: inline-block;
+}
+
+.product--image--description--middle-- {
+    position: relative; /* Stellt sicher, dass der Text relativ positioniert ist */
+    z-index: 2; /* Text bleibt über dem Blur */
+    color: white;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 12px;
+    font-weight: 550;
+    padding: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.05vw;
+}
+
+
+
+
+
+#bottom-centered--products {
+    display: flex;
+    list-style: none;
+    height: auto;
+    width: auto;
+    position: absolute;
+    bottom: 8vh;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2; /* Stellt sicher, dass der Text über dem Schatten liegt */
+    align-items: center;
+    justify-content: flex-start; /* Ändere dies zu flex-start */
+    padding: 0.8vh;
+    margin: 0; /* Entfernt den Margin des UL */
+    text-align: left; /* Stellt sicher, dass der Text linksbündig ist */
+}
+
+#bottom-left--products li {
+    display: flex; /* Ermöglicht das Anordnen von Kinderelementen nebeneinander */
+    align-items: center; /* Zentriert die Inhalte vertikal (falls nötig) */
+}
+
+#bottom-left--products li:not(:last-child) {
+    margin-right: 0.5vw; /* Fügt Abstand zwischen den <li>-Elementen hinzu */
+    margin-left: 0.5vw; /* Fügt Abstand zwischen den <li>-Elementen hinzu */
+}
+
+#bottom-left--products span {
+    white-space: nowrap; /* Verhindert Zeilenumbrüche im Text */
+}
+
+
+#bottom-left--products--2 {
+    display: flex;
+    list-style: none;
+    height: auto;
+    width: calc(100% - 1.3vw);
+    position: absolute;
+    bottom: 0.6vw;
+    left: 0.6vw;
+    z-index: 2; /* Stellt sicher, dass der Text über dem Schatten liegt */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* Webkit-Präfix */
+    border: 1px solid white;
+    align-items: center;
+    justify-content: flex-start; /* Ändere dies zu flex-start */
+    padding: 0;
+    margin: 0; /* Entfernt den Margin des UL */
+    text-align: left; /* Stellt sicher, dass der Text linksbündig ist */
+    border-radius: 2px;
+}
+
+#bottom-left--products--2 {
+    width: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.3vw;
+    bottom: 1.2vw;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.img-hover-zoom--wide-- {
+    position: relative;
+    overflow: hidden; /* Stellt sicher, dass das Bild im Container bleibt */
+    width: auto;
+    height: 95vh;
+}
+
+.image--wide-- {
+    width: 44vw; /* Passt sich der Breite des Containers an */
+    height: 95vh; /* Passt sich der Höhe des Containers an */
+    object-fit: cover; /* Bild bleibt innerhalb des Containers */
+    transition: transform 1s ease;
+    transform-origin: center;
+}
+
+
+
+
+.img-hover-zoom--extra--wide-- {
+    position: relative;
+    overflow: hidden; /* Stellt sicher, dass das Bild im Container bleibt */
+    width: auto;
+    height: 95vh;
+}
+
+.image--extra--wide-- {
+    width: 89vw; /* Passt sich der Breite des Containers an */
+    height: 95vh; /* Passt sich der Höhe des Containers an */
+    object-fit: cover; /* Bild bleibt innerhalb des Containers */
+    transition: transform 1s ease;
+    transform-origin: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* FOOTER */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.footer {
+    font-family: 'Poppins Medium';
+    background-color: black;
+    color: rgb(255, 255, 255);
+    padding: 40px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 20px;
+}
+
+.footer-section {
+    flex: 1 1 200px; /* Makes the sections flexible */
+    margin: 10px;
+    padding: 0 20px;
+}
+
+.footer-title {
+    font-family: 'Poppins Medium';
+    color: rgb(145, 145, 145);
+    font-size: 11px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 0.01vw;
+}
+
+.footer-section p, .footer-section ul, .footer-section li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.footer-section ul {
+    padding-top: 2.5vh;
+}
+
+.footer-section ul li {
+    margin-bottom: 2.5vh;
+}
+
+.footer-section ul li a {
+    font-family: 'Poppins Medium';
+    color: inherit;
+    text-decoration: none;
+    font-size: 12px;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    transition: color 0.2s ease-in-out;
+    z-index: 0; /* Sicherstellen, dass der Text über dem Hintergrund bleibt */
+    padding: 0.25vh 0.2vw;
+    font-weight: 500;
+    letter-spacing: 0.01vw;
+}
+
+.footer-section ul li a::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    z-index: -1;
+    transition: top 0.2s ease-in-out;
+}
+
+.footer-section ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: white;
+    z-index: 1; /* Sicherstellen, dass die untere Linie über dem Hintergrund bleibt */
+}
+
+.footer-section ul li a:hover::before {
+    top: 0;
+}
+
+.footer-section ul li a:hover {
+    color: rgb(0, 0, 0);
+}
+
+.footer-section input[type="email"], .footer-section select {
+    margin-top: 10px;
+    padding: 10px;
+    width: 100%;
+    max-width: 300px;
+    border: none;
+    background-color: #ffffff;
+    color: #ffffff;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 8vh;
+    width: 100%;
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+
+.footer-paragraph {
+    font-family: 'Poppins Regular';
+    color: inherit;
+    text-decoration: none;
+    font-size: 12px;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    transition: color 0.2s ease-in-out;
+    z-index: 0; /* Sicherstellen, dass der Text über dem Hintergrund bleibt */
+    padding: 0.25vh 0.2vw;
+    font-weight: 500;
+    letter-spacing: 0.01vw;
+}
